@@ -2,64 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ServiceRequest;
 use App\Models\Service;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
-    }
+        $service = Service::all();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+        if($service->isEmpty()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'سرویسی وجود ندارد'
+            ], 404);
+        }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+        return response()->json([
+            'status' => true,
+            'message' => 'سرویس ها با موفقیت بارگذاری شدند',
+            'data' => $service
+        ]);
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Service $service)
+    public function store(ServiceRequest $request)
     {
-        //
-    }
+        $data = $request->validated();
+        $service = Service::create($data);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Service $service)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Service $service)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Service $service)
-    {
-        //
+        return response()->json([
+            'status' => true,
+            'message' => 'سرویس شما با موفقیت ارسال شد.',
+            'data' => $service,
+        ], 201);
     }
 }
