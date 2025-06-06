@@ -16,3 +16,10 @@ use App\Http\Controllers\MessageController;
 Route::get('/profile', [ProfileController::class, 'show']);
 Route::put('/profile', [ProfileController::class, 'update']);
 
+Route::get('/projects', [ProjectController::class, 'index']);
+Route::post('/projects', [ProjectController::class, 'store']);
+
+Route::get('/services', [ServiceController::class, 'index']);
+Route::post('/services', [ServiceController::class, 'store']);
+
+Route::post('/messages', [MessageController::class, 'store']);
