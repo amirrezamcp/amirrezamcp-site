@@ -11,4 +11,8 @@ class Profile extends Model
         'bio',
         'skills'
     ];
+
+    protected $casts = [
+        'skills' => 'array',
+    ];
 }
