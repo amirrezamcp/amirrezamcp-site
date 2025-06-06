@@ -28,7 +28,7 @@ class ProfileController extends Controller
             "data" => $userProfile
         ]);
     }
- public function update(ProfileRequest $request): JsonResponse
+    public function update(ProfileRequest $request): JsonResponse
     {
         $data = $request->validated();
 
