@@ -13,4 +13,8 @@ class Project extends Model
         'tags',
         'link'
     ];
+
+    protected $casts = [
+        'tags' => 'array',
+    ];
 }
