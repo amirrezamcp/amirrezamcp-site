@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
 
-    public function show()
+    public function show(): JsonResponse
     {
         $userProfile =  Profile::first();
 
@@ -26,7 +26,7 @@ class ProfileController extends Controller
             "status" => true,
             "message" => "profile information",
             "data" => $userProfile
-        ]);
+        ],201);
     }
     public function update(ProfileRequest $request): JsonResponse
     {
@@ -42,6 +42,6 @@ class ProfileController extends Controller
             'status' => true,
             'message' => 'Profile updated successfully.',
             'data' => $profile,
-        ]);
+        ], 201);
     }
 }
